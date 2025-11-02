@@ -47,4 +47,13 @@ export class ConsultaComponent implements OnInit {
   prepararEdicao(id: string){
     this.router.navigate(['/cadastro'], { queryParams: { 'id': id } });
   }
+
+  prepararExclusao(cliente: Cliente){
+    cliente.deletando = true;
+  }
+
+  deletar(cliente: Cliente){
+    this.service.deletar(cliente);
+    this.listaClientes = this.service.pesquisarClientes('');
+  }
 }
