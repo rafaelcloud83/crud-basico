@@ -5,12 +5,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { Cliente } from './cliente';
 import { ClienteService } from '../cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask'
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { BrasilapiService } from '../brasilapi.service';
+import { Estado, Municipio } from '../brasilapi.models';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro',
@@ -22,6 +26,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     MatInputModule, 
     MatIconModule,
     MatButtonModule,
+    MatSelectModule,
+    CommonModule,
     NgxMaskDirective
   ], providers: [
     provideNgxMask()
@@ -34,8 +40,15 @@ export class CadastroComponent implements OnInit{
   cliente: Cliente = Cliente.newCliente();
   atualizando: boolean = false;
   snack: MatSnackBar = inject(MatSnackBar);
+  estados: Estado[] = [];
+  municipios: Municipio[] = [];
 
-  constructor(private service: ClienteService, private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private service: ClienteService,
+    private brasilApiService : BrasilapiService, 
+    private route: ActivatedRoute, 
+    private router: Router
+  ) {
 
   }
 
@@ -49,9 +62,14 @@ export class CadastroComponent implements OnInit{
         if(clienteEncontrado){
           this.atualizando = true;
           this.cliente = clienteEncontrado;
+          if(this.cliente.uf) {
+            const event = { value: this.cliente.uf };
+            this.carregarMunicipios(event as MatSelectChange);
+          }
         }
       }
     });
+    this.carregarEstados();
   }
 
   salvar() {
@@ -68,5 +86,20 @@ export class CadastroComponent implements OnInit{
 
   mostrarMensagem(msg: string) {
     this.snack.open(msg, 'OK', { duration: 3000 });
+  }
+
+  carregarEstados() {
+    this.brasilApiService.listarEstados().subscribe({
+      next: listaEstados => this.estados = listaEstados,
+      error: err => console.error('Erro ao carregar estados: ', err)
+    });
+  }
+
+  carregarMunicipios(event: MatSelectChange) {
+    const ufSelecionado = event.value;
+    this.brasilApiService.listarMunicipiosPorEstado(ufSelecionado).subscribe({
+      next: listaMunicipios => this.municipios = listaMunicipios,
+      error: err => console.error('Erro ao carregar municípios: ', err)
+    });
   }
 }
