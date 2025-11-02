@@ -1,59 +1,85 @@
-# CrudBasico
+<h1>CRUD Cliente Angular - Página para cadastro, edição, exclusão e pesquisa de cliente</h1> 
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+<p align="center">
+  <img src="https://img.shields.io/static/v1?label=typescript&message=language&color=blue&style=for-the-badge&logo=TYPESCRIPT"/>  
+  <img src="https://img.shields.io/static/v1?label=Angular&message=framework&color=blue&style=for-the-badge&logo=ANGULAR"/>   
+  <img src="https://img.shields.io/static/v1?label=STATUS&message=CONCLUIDO&color=GREEN&style=for-the-badge"/>
+</p>
 
-## Development server
+# Introdução
 
-To start a local development server, run:
+<h2>Um simples CRUD de clientes, utilizando o Local Storage do browser para persistência de dados, consumo de dados da API da BrasilAPI para consumir o estado e os municipios do Brasil.</h2>
 
-```bash
+## <a href="https://brasilapi.com.br/" target="_blank">Site Brasil API</a>
+
+## Sumário
+
+* [Tecnologias e Ferramentas utilizadas](#tecnologias-e-ferramentas-utilizadas)
+* [Execução do projeto](#execução-do-projeto)
+* [Imagens do projeto](#imagens-do-projeto)
+
+## Tecnologias e Ferramentas utilizadas
+
+[voltar ao início](#sumário)
+
+* **TypeScript**
+* **Angular 19.0.2**
+* **Node 20.19.5**
+* **VS Code**
+* **Git e GitHub**
+
+## Execução do projeto
+
+[voltar ao início](#sumário)
+
+Para rodar a aplicação, será necessário ter instalado:
+
+* **Git**
+* **Node 20**
+* **Angular CLI 19.0.2**
+
+Primeiramente clone o projeto com o comando:
+
+- Clonar com HTTPS
+
+```shell
+git clone https://github.com/rafaelcloud83/crud-basico.git
+```
+
+Entre no diretório raiz do projeto com o comando:
+
+```shell
+cd crud-basico
+```
+
+Depois de clonar o projeto e estar no diretório raiz, realize a instalação das dependências da aplicação executando o comando:
+
+```shell
+npm install
+```
+
+Depois de instalar as dependências, execute o comando abaixo para rodar a aplicação:
+
+```shell
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Com a aplicação em execução, abra o navegador de internet e cole o comando abaixo:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+http://localhost:4200/
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Imagens do projeto
 
-```bash
-ng generate --help
-```
+[voltar ao início](#sumário)
 
-## Building
+Cadastro de Cliente
 
-To build the project run:
+<img src="https://github.com/rafaelcloud83/assets-repository/blob/main/crudBasicoAngular/cadastro.png?raw=true">
 
-```bash
-ng build
-```
+<br>
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Pesquisa de Cliente
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+<img src="https://github.com/rafaelcloud83/assets-repository/blob/main/crudBasicoAngular/consulta.png?raw=true">
