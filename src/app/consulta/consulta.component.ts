@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cadastro/cliente';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consulta',
@@ -29,9 +30,9 @@ export class ConsultaComponent implements OnInit {
 
   nomeBusca: string = '';
   listaClientes: Cliente[] = [];
-  colunasTabela: string[] = ['id', 'nome', 'cpf', 'email', 'dataNascimento'];
+  colunasTabela: string[] = ['id', 'nome', 'cpf', 'email', 'dataNascimento', 'acoes'];
 
-  constructor(private service: ClienteService) {
+  constructor(private service: ClienteService, private router: Router) {
 
   }
 
@@ -41,5 +42,9 @@ export class ConsultaComponent implements OnInit {
 
   pesquisar(){
     this.listaClientes = this.service.pesquisarClientes(this.nomeBusca);
+  }
+
+  prepararEdicao(id: string){
+    this.router.navigate(['/cadastro'], { queryParams: { 'id': id } });
   }
 }
